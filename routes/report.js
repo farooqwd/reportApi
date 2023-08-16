@@ -28,6 +28,7 @@ router.post("/submit", async (req, res) => {
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
+    res.send(newIssue);
   }
 });
 module.exports = router;
