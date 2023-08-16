@@ -10,7 +10,7 @@ app.use(
   })
 );
 // connection to db
-// connectDb();
+connectDb();
 // routes
 app.use("/api/report", report);
 app.get("/", (req, res) => {
