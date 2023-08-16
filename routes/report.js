@@ -20,13 +20,9 @@ router.post("/submit", async (req, res) => {
     // const { title, description, location } = req.body;
     // console.log(req);
     // console.log(description);
-    const newIssue = new Issue({
-      title: "title",
-      description: "desc",
-      location: "test",
-    });
+    const title = "title";
+    await Issue.create({ title });
     // console.log(title);
-    await newIssue.save();
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
