@@ -4,7 +4,11 @@ const connectDb = require("./db");
 const mongoose = require("mongoose");
 const app = express();
 // cors
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 // connection to db
 connectDb();
 app.get("/", (req, res) => {
