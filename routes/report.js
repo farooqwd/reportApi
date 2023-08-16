@@ -15,7 +15,7 @@ const issueSchema = new mongoose.Schema({
 });
 const Issue = mongoose.model("Issue", issueSchema);
 
-router.post("/submit", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     // const { title, description, location } = req.body;
     // console.log(req);

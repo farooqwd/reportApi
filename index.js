@@ -12,7 +12,7 @@ app.use(
 // connection to db
 connectDb();
 // routes
-app.use("/api/report", report);
+app.use("/api/report/submit", report);
 app.get("/", (req, res) => {
   res.send("hi");
 });
