@@ -10,4 +10,4 @@ const reportSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Reports", reportSchema);
+module.exports = mongoose.model("Report", reportSchema);
