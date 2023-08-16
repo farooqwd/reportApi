@@ -18,6 +18,7 @@ const issueSchema = new mongoose.Schema({
   title: String,
   description: String,
   location: String,
+  image: String,
   createdAt: {
     type: Date,
     default: new Date(),
@@ -38,8 +39,8 @@ app.get("/api/issues", async (req, res) => {
 app.post("/api/report/submit", async (req, res) => {
   try {
     const { title, description, location } = req.body;
-    console.log(title, description, location);
-    await Issue.create({ title, description, location });
+    console.log(title, description, location, image);
+    await Issue.create({ title, description, location, image });
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
