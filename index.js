@@ -32,6 +32,7 @@ const Issue = mongoose.model("Issue", issueSchema);
 app.post("/api/report/submit", async (req, res) => {
   try {
     const { title, description, location } = req.body;
+    console.log(title, description, location);
     res.send({ title, description, location });
     await Issue.create({ title, description, location });
     res.status(201).json({ message: "Issue added successfully" });
