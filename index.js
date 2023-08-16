@@ -9,6 +9,7 @@ app.use(
     origin: "*",
   })
 );
+app.use(express.json());
 // connection to db
 connectDb();
 app.get("/", (req, res) => {
@@ -31,11 +32,10 @@ const Issue = mongoose.model("Issue", issueSchema);
 // /////////////////////////////Post route
 app.post("/api/report/submit", async (req, res) => {
   try {
-    const { title, description, location } = req.body;
     console.log(title, description, location);
-    res.send({ title, description, location });
     await Issue.create({ title, description, location });
     res.status(201).json({ message: "Issue added successfully" });
+    console.log("hi");
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
     console.log("new error");
