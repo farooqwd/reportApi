@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const connectDb = require("./db");
 const mongoose = require("mongoose");
-const multer = require("multer");
 const app = express();
 // cors
 app.use(
@@ -36,43 +35,11 @@ app.get("/api/issues", async (req, res) => {
 });
 
 // /////////////////////////////Post route
-// app.post("/api/report/submit", async (req, res) => {
-//   try {
-//     const { title, description, location } = req.body;
-//     console.log(title, description, location);
-//     await Issue.create({ title, description, location });
-//     res.status(201).json({ message: "Issue added successfully" });
-//   } catch (error) {
-//     res.status(500).json({ error: "An error occurred" });
-//     console.log("new error");
-//   }
-// });
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, `images/${file.originalname}`);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage });
-
 app.post("/api/report/submit", async (req, res) => {
   try {
-    const { title, description, location, image } = req.body;
-    console.log(title, description, location, image);
-    if (!image) {
-      await Issue.create({ title, description, location });
-    }
-    const imagePath = await upload.single("image", req);
-    await Issue.create({
-      title,
-      description,
-      location,
-      imagePath,
-    });
+    const { title, description, location } = req.body;
+    console.log(title, description, location);
+    await Issue.create({ title, description, location });
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
