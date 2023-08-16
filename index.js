@@ -12,10 +12,6 @@ app.use(
 app.use(express.json());
 // connection to db
 connectDb();
-app.get("/", (req, res) => {
-  res.send("hi");
-});
-
 // //////////////////Post Request
 // /////////////////Schema
 const issueSchema = new mongoose.Schema({
@@ -28,6 +24,15 @@ const issueSchema = new mongoose.Schema({
   },
 });
 const Issue = mongoose.model("Issue", issueSchema);
+
+app.get("/api/issues", async (req, res) => {
+  try {
+    const issues = await Issue.find({});
+    res.json(issues);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
 
 // /////////////////////////////Post route
 app.post("/api/report/submit", async (req, res) => {
