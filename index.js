@@ -6,7 +6,12 @@ const app = express();
 // cors
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
+    credentials: true,
+    exposedHeaders: ["Content-Length", "X-Pagination"],
+    maxAge: 86400,
   })
 );
 // connection to db
