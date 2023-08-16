@@ -38,8 +38,8 @@ app.get("/api/issues", async (req, res) => {
 // /////////////////////////////Post route
 app.post("/api/report/submit", async (req, res) => {
   try {
-    const { title, description, location } = req.body;
-    console.log(title, description, location, image);
+    const { title, description, location, image } = req.body;
+    // console.log(title, description, location, image);
     await Issue.create({ title, description, location, image });
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
