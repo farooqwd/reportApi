@@ -4,16 +4,7 @@ const connectDb = require("./db");
 const mongoose = require("mongoose");
 const app = express();
 // cors
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
-    credentials: true,
-    exposedHeaders: ["Content-Length", "X-Pagination"],
-    maxAge: 86400,
-  })
-);
+app.use(cors());
 // connection to db
 connectDb();
 app.get("/", (req, res) => {
