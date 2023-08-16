@@ -27,7 +27,7 @@ const Issue = mongoose.model("Issue", issueSchema);
 
 app.get("/api/issues", async (req, res) => {
   try {
-    const issues = await Issue.find({});
+    const issues = await Issue.find({}).sort({ createdAt: -1 }); // Sorting in descending order
     res.json(issues);
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
