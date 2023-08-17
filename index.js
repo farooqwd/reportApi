@@ -35,7 +35,7 @@ app.post("/api/report/submit", async (req, res) => {
     const count = await Issue.countDocuments();
     const newId = `rep${String(count + 1).padStart(3, "0")}`;
     await Issue.create({ _id: newId, title, description, location, image });
-    res.status(201).json({ message: "Issue added successfully" });
+    res.status(201).json({ message: newId });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
     console.log("new error");
