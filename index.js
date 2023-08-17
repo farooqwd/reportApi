@@ -32,10 +32,13 @@ app.post("/api/report/submit", async (req, res) => {
   try {
     const { title, description, location, image } = req.body;
     // console.log(title, description, location, image);
-    const latestIssue = await Issue.findOne().sort({ _id: -1 });
-    let newId = "rep001"; // Default starting value
-    if (latestIssue) {
-      const lastIdNumber = parseInt(latestIssue._id.substr(3), 10);
+    const latestIssue = await Issue.findOne({}, { _id: 1 }).sort({ _id: -1 });
+
+    let newId;
+    if (!latestIssue) {
+      newId = "rep001";
+    } else {
+      const lastIdNumber = parseInt(latestIssue._id.substr(3));
       newId = `rep${String(lastIdNumber + 1).padStart(3, "0")}`;
     }
     await Issue.create({ _id: newId, title, description, location, image });
