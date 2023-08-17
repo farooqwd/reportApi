@@ -15,7 +15,7 @@ connectDb();
 // //////////////////Post Request
 // /////////////////Schema
 const issueSchema = new mongoose.Schema({
-  id: String,
+  _id: String,
   title: String,
   description: String,
   location: String,
@@ -38,7 +38,7 @@ app.post("/api/report/submit", async (req, res) => {
       const lastIdNumber = parseInt(latestIssue._id.substr(3), 10);
       newId = `rep${String(lastIdNumber + 1).padStart(3, "0")}`;
     }
-    await Issue.create({ id: newId, title, description, location, image });
+    await Issue.create({ _id: newId, title, description, location, image });
     res.status(201).json({ message: "Issue added successfully" });
   } catch (error) {
     res.status(500).json({ error: "An error occurred" });
